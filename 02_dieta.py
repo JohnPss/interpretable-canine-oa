@@ -1,4 +1,4 @@
-"""Fase 3 (parte) — harmonização do bloco de dieta entre as duas versões do HLES.
+"""Fase 2 — harmonização do bloco de dieta entre as duas versões do HLES.
 
 O HLES trocou o bloco de dieta em 2022: a versão antiga usa variáveis `df_*`
 (39.268 cães, HLES 2019–2022) e a nova usa `dt_*` (9.809 cães, HLES 2022–2024).
@@ -9,11 +9,12 @@ Critério de "mapeamento limpo": pergunta equivalente no codebook E proporções
 parecidas entre as versões dentro da mesma faixa etária (a versão nova tem cães
 mais jovens, então comparar sem estratificar confunde versão com idade).
 
-Entrada:  data/raw/DAP_2024_HLES_dog_owner_v1.0.csv, data/processed/amostra.csv
+Entrada:  data/raw/DAP_2024_HLES_dog_owner_v1.0.csv, data/processed/populacao.csv (01_populacao.py)
 Saída:    data/processed/dieta.csv — variáveis harmonizadas (categorias em texto;
           o encoding é feito no pipeline da Fase 3).
 
-Decisões documentadas em metodologia_projeto.md (Fase 3).
+Decisões documentadas em metodologia_projeto.md (Fase 2). A harmonização foi feita e validada
+no desenho de OA (mesmos cães, mesmas perguntas) e vale igual aqui: não depende do desfecho.
 """
 from pathlib import Path
 
@@ -30,7 +31,8 @@ SIM_NAO = {1: "sim", 0: "nao", 99: "nao_sabe"}
 def main():
     own = pd.read_csv(RAW / "DAP_2024_HLES_dog_owner_v1.0.csv", low_memory=False,
                       usecols=lambda c: c == "dog_id" or c.startswith(("df_", "dt_")))
-    am = pd.read_csv(PROC / "amostra.csv", usecols=["dog_id", "Estimated_Age_Years_at_HLES"])
+    am = pd.read_csv(PROC / "populacao.csv", usecols=["dog_id", "idade_hles"]) \
+           .rename(columns={"idade_hles": "Estimated_Age_Years_at_HLES"})
     d = am.merge(own, on="dog_id", how="left")
 
     # Versão do bloco: cada cão respondeu exatamente uma.

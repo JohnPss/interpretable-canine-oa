@@ -1,0 +1,26 @@
+           variante                                estrato  obitos  lacuna_mediana_meses  lacuna_p90_meses  n_lacuna_gt12m  pct_lacuna_gt12m  n_lacuna_gt18m  pct_lacuna_gt18m  n_lacuna_gt24m  pct_lacuna_gt24m
+   datas_observadas                                  geral   12079                   6.7              22.9            2814              23.3            1902              15.7            1045               8.7
+   datas_observadas                               < 7 anos    1255                   8.0              27.6             406              32.4             288              22.9             179              14.3
+   datas_observadas                              7–10 anos    2513                   7.9              26.4             742              29.5             529              21.1             310              12.3
+   datas_observadas                             10–13 anos    4593                   6.9              23.4            1102              24.0             751              16.4             416               9.1
+   datas_observadas                               13+ anos    3718                   5.5              16.6             564              15.2             334               9.0             140               3.8
+   datas_observadas fonte: Annual Follow-Up estimated date      37                   6.5              15.8              10              27.0               2               5.4               1               2.7
+   datas_observadas       fonte: End of Life date of death   10167                   6.1              19.4            1791              17.6            1148              11.3             539               5.3
+   datas_observadas      fonte: Study Status reported date     546                   9.3              22.6             176              32.2             100              18.3              25               4.6
+   datas_observadas      fonte: Study status date of death    1329                  17.7              39.5             837              63.0             652              49.1             480              36.1
+afus_sem_data_aprox                                  geral   12079                   6.3              21.3            2396              19.8            1590              13.2             851               7.0
+afus_sem_data_aprox                               < 7 anos    1255                   7.5              25.8             358              28.5             248              19.8             152              12.1
+afus_sem_data_aprox                              7–10 anos    2513                   7.3              24.0             625              24.9             443              17.6             253              10.1
+afus_sem_data_aprox                             10–13 anos    4593                   6.4              21.7             937              20.4             630              13.7             334               7.3
+afus_sem_data_aprox                               13+ anos    3718                   5.3              14.0             476              12.8             269               7.2             112               3.0
+afus_sem_data_aprox fonte: Annual Follow-Up estimated date      37                   6.2              12.4               9              24.3               1               2.7               1               2.7
+afus_sem_data_aprox       fonte: End of Life date of death   10167                   5.7              16.3            1454              14.3             895               8.8             398               3.9
+afus_sem_data_aprox      fonte: Study Status reported date     546                   9.1              22.6             165              30.2              94              17.2              25               4.6
+afus_sem_data_aprox      fonte: Study status date of death    1329                  15.2              37.0             768              57.8             600              45.1             427              32.1
+   estrato  caes  obitos  mort2a_original  caes_sim  obitos_sim  mort2a_simetrica
+     geral 40356   12079             20.2     39507       10177              19.6
+  < 7 anos 20939    1255              3.1     20813         967               2.9
+ 7–10 anos  7854    2513             15.5      7646        1984              14.9
+10–13 anos  7151    4593             37.1      6804        3842              37.8
+  13+ anos  4412    3718             72.1      4244        3384              74.5
+Critério: contato vivo nos 18 meses antes do óbito. Óbitos sem participação ativa: 1902 de 12079; saem da análise simétrica (tempo 0): 849

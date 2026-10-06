@@ -1,0 +1,4 @@
+covariate,coef,exp(coef),exp(coef) lower 95%,exp(coef) upper 95%,modelo,nota
+idade,1.3020426612175235,3.6767994578383196,3.5980861360735776,3.7572347470015415,cox_idade,colunas padronizadas (HR por desvio-padrão)
+idade,1.41546330321374,4.118394089252138,4.026128561979283,4.212774036715975,cox_idade_porte,colunas padronizadas (HR por desvio-padrão)
+porte,0.35353462455862505,1.4240922946648784,1.394326905051751,1.4544931008475428,cox_idade_porte,colunas padronizadas (HR por desvio-padrão)

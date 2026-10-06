@@ -1,0 +1,4 @@
+[   0.0 min] xgb_cox: busca (41 configs x 5 folds)
+[xgb_cox] melhor config 16: {'max_depth': 4, 'eta': 0.015717207673779203, 'min_child_weight': 0.5523229932336771, 'subsample': 0.5450239303878208, 'colsample_bytree': 0.8334156103578703, 'reg_lambda': 1.393560744569601} | n_arvores=367 | nll_cv=7.19535
+[   1.6 min] xgb_cox: predições fora-do-fold e modelo final
+[   1.8 min] xgb_cox: checagem da ordem das linhas
