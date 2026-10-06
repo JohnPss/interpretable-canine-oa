@@ -383,6 +383,25 @@ def comparar(pred_novo, pred_base, nome_novo, nome_base, particao="teste", n_boo
     return pd.DataFrame(linhas)
 
 
+def calibracao_por_grupo(pred: pd.DataFrame, particao="teste", h=H_CALIB, dados=None) -> pd.DataFrame:
+    """Curva de calibração em h anos: cães ordenados pelo risco previsto em grupos de quantil (decis no geral,
+    quintis nas faixas, como dito no M&M); por grupo, risco previsto médio vs. observado (1 - KM)."""
+    df = carregar_com_particao() if dados is None else dados
+    d = df[df.particao == particao].merge(pred[["dog_id"] + COLS_RISCO], on="dog_id")
+    col = COLS_RISCO[HORIZONTES.index(h)]
+    linhas = []
+    for estrato in ESTRATOS:
+        s = d if estrato == "geral" else d[faixa_etaria(d.idade) == estrato]
+        n_g = 10 if estrato == "geral" else 5
+        g = pd.qcut(s[col].rank(method="first"), n_g, labels=False)
+        for k in range(n_g):
+            m = s[g == k]
+            linhas.append(dict(particao=particao, estrato=estrato, grupo=k + 1, n=len(m),
+                               n_obitos=int(m.evento.sum()), previsto=m[col].mean(),
+                               observado=km_risco(m.tempo, m.evento, h)))
+    return pd.DataFrame(linhas)
+
+
 def resumir(met: pd.DataFrame) -> pd.DataFrame:
     """Tabela larga 'valor [IC]' para imprimir."""
     m = met.copy()

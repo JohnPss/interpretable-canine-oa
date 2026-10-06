@@ -1,4 +1,53 @@
 [   0.0 min] xgb_cox: busca (41 configs x 5 folds)
+[xgb_cox] busca reaproveitada de xgb_busca_xgb_cox.csv
 [xgb_cox] melhor config 16: {'max_depth': 4, 'eta': 0.015717207673779203, 'min_child_weight': 0.5523229932336771, 'subsample': 0.5450239303878208, 'colsample_bytree': 0.8334156103578703, 'reg_lambda': 1.393560744569601} | n_arvores=367 | nll_cv=7.19535
-[   1.6 min] xgb_cox: predições fora-do-fold e modelo final
-[   1.8 min] xgb_cox: checagem da ordem das linhas
+[   0.0 min] xgb_cox: predições fora-do-fold e modelo final
+[   0.2 min] xgb_cox: checagem da ordem das linhas
+ modelo  corr_margens  dif_abs_max
+xgb_cox      0.999943        0.137
+[   0.2 min] xgb_cox: métricas (teste, 1000 réplicas)
+[   1.9 min] xgb_cox: métricas (treino, 1000 réplicas)
+[   9.2 min] xgb_cox: diferença pareada vs cox_idade
+[  12.6 min] xgb_cox: diferença pareada vs cox_linear
+[  16.1 min] xgb_cox: saídas gravadas
+[  16.1 min] xgb_cox_sem_saude: busca (41 configs x 5 folds)
+[xgb_cox_sem_saude] melhor config 39: {'max_depth': 2, 'eta': 0.065541440465996, 'min_child_weight': 6.380977373085664, 'subsample': 0.5998878258300289, 'colsample_bytree': 0.8824747157093576, 'reg_lambda': 5.917662690564752} | n_arvores=222 | nll_cv=7.23152
+[  17.4 min] xgb_cox_sem_saude: predições fora-do-fold e modelo final
+[  17.5 min] xgb_cox_sem_saude: checagem da ordem das linhas
+           modelo  corr_margens  dif_abs_max
+xgb_cox_sem_saude      0.999961     0.128962
+[  17.5 min] xgb_cox_sem_saude: métricas (teste, 1000 réplicas)
+[  19.2 min] xgb_cox_sem_saude: métricas (treino, 1000 réplicas)
+[  26.2 min] xgb_cox_sem_saude: diferença pareada vs cox_idade
+[  29.4 min] xgb_cox_sem_saude: saídas gravadas
+           modelo  corr_margens  dif_abs_max
+          xgb_cox      0.999943     0.137000
+xgb_cox_sem_saude      0.999961     0.128962
+col                                  auc_tempo@1a         auc_tempo@2a         auc_tempo@3a             brier@2a              c_index            cal_oe@2a
+modelo            estrato                                                                                                                                 
+xgb_cox           10–13 anos  0.723 [0.687–0.760]  0.753 [0.726–0.781]  0.755 [0.727–0.785]  0.211 [0.200–0.223]  0.688 [0.670–0.706]  1.008 [0.942–1.074]
+                  13+ anos    0.789 [0.757–0.819]  0.747 [0.707–0.779]  0.768 [0.711–0.816]  0.197 [0.179–0.216]  0.692 [0.672–0.710]  0.977 [0.936–1.020]
+                  7–10 anos   0.750 [0.694–0.806]  0.718 [0.681–0.758]  0.716 [0.684–0.748]  0.122 [0.110–0.135]  0.690 [0.666–0.715]  0.996 [0.879–1.112]
+                  < 7 anos    0.648 [0.543–0.740]  0.697 [0.639–0.755]  0.684 [0.638–0.727]  0.027 [0.023–0.033]  0.700 [0.662–0.738]  0.931 [0.745–1.128]
+                  geral       0.895 [0.883–0.907]  0.888 [0.877–0.897]  0.883 [0.872–0.893]  0.097 [0.092–0.102]  0.855 [0.848–0.863]  1.037 [0.996–1.078]
+xgb_cox_sem_saude 10–13 anos  0.694 [0.658–0.729]  0.726 [0.698–0.754]  0.733 [0.703–0.762]  0.222 [0.212–0.233]  0.669 [0.652–0.687]  1.016 [0.950–1.085]
+                  13+ anos    0.727 [0.692–0.760]  0.703 [0.662–0.741]  0.728 [0.667–0.779]  0.209 [0.191–0.228]  0.650 [0.628–0.671]  0.981 [0.939–1.026]
+                  7–10 anos   0.701 [0.641–0.763]  0.682 [0.641–0.724]  0.688 [0.653–0.724]  0.128 [0.115–0.141]  0.664 [0.639–0.690]  1.002 [0.878–1.119]
+                  < 7 anos    0.614 [0.512–0.703]  0.678 [0.617–0.738]  0.673 [0.627–0.717]  0.028 [0.023–0.033]  0.685 [0.645–0.724]  0.952 [0.762–1.154]
+                  geral       0.884 [0.872–0.897]  0.879 [0.868–0.890]  0.877 [0.866–0.887]  0.101 [0.097–0.106]  0.848 [0.840–0.856]  1.045 [1.005–1.086]
+           modelo referencia    estrato  diferenca  ic_lo  ic_hi
+          xgb_cox  cox_idade      geral      0.025  0.022  0.029
+          xgb_cox  cox_idade   < 7 anos      0.073  0.049  0.099
+          xgb_cox  cox_idade  7–10 anos      0.102  0.075  0.130
+          xgb_cox  cox_idade 10–13 anos      0.117  0.096  0.137
+          xgb_cox  cox_idade   13+ anos      0.103  0.083  0.125
+          xgb_cox cox_linear      geral      0.002  0.000  0.003
+          xgb_cox cox_linear   < 7 anos      0.001 -0.009  0.010
+          xgb_cox cox_linear  7–10 anos      0.004 -0.004  0.012
+          xgb_cox cox_linear 10–13 anos      0.007  0.001  0.013
+          xgb_cox cox_linear   13+ anos      0.009  0.001  0.017
+xgb_cox_sem_saude  cox_idade      geral      0.018  0.015  0.021
+xgb_cox_sem_saude  cox_idade   < 7 anos      0.059  0.035  0.084
+xgb_cox_sem_saude  cox_idade  7–10 anos      0.075  0.050  0.101
+xgb_cox_sem_saude  cox_idade 10–13 anos      0.098  0.079  0.118
+xgb_cox_sem_saude  cox_idade   13+ anos      0.061  0.044  0.079

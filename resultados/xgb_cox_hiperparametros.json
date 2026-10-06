@@ -39,36 +39,37 @@
     "colsample_bytree": 0.8,
     "reg_lambda": 1.0
   },
-  "n_configs": 2,
+  "n_configs": 41,
   "paciencia": 100,
   "max_arvores": 4000,
   "criterio": "nll parcial de Breslow média de validação (5 folds), modelagem.nll_parcial",
+  "n_boot": 1000,
   "modelos": {
     "xgb_cox": {
-      "config_id": 0,
-      "n_estimators": 221,
+      "config_id": 16,
+      "n_estimators": 367,
       "params": {
-        "max_depth": 3,
-        "eta": 0.05,
-        "min_child_weight": 5.0,
-        "subsample": 0.8,
-        "colsample_bytree": 0.8,
-        "reg_lambda": 1.0
+        "max_depth": 4,
+        "eta": 0.015717207673779203,
+        "min_child_weight": 0.5523229932336771,
+        "subsample": 0.5450239303878208,
+        "colsample_bytree": 0.8334156103578703,
+        "reg_lambda": 1.393560744569601
       },
-      "nll_cv": 7.197401363961956
+      "nll_cv": 7.195347507166145
     },
     "xgb_cox_sem_saude": {
-      "config_id": 0,
-      "n_estimators": 167,
+      "config_id": 39,
+      "n_estimators": 222,
       "params": {
-        "max_depth": 3,
-        "eta": 0.05,
-        "min_child_weight": 5.0,
-        "subsample": 0.8,
-        "colsample_bytree": 0.8,
-        "reg_lambda": 1.0
+        "max_depth": 2,
+        "eta": 0.065541440465996,
+        "min_child_weight": 6.380977373085664,
+        "subsample": 0.5998878258300289,
+        "colsample_bytree": 0.8824747157093576,
+        "reg_lambda": 5.917662690564752
       },
-      "nll_cv": 7.2325193494691975
+      "nll_cv": 7.2315179957999955
     }
   }
 }

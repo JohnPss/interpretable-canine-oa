@@ -72,6 +72,24 @@ def test_faixas():
         ["< 7 anos"] * 2 + ["7–10 anos"] * 2 + ["10–13 anos"] * 2 + ["13+ anos"] * 2
 
 
+def test_calibracao_por_grupo():
+    _, t, e = _sintetico()
+    n = len(t)
+    rng = np.random.default_rng(3)
+    idade = rng.uniform(0, 16, n)
+    risco = np.sort(rng.uniform(0, 1, (n, len(mc.HORIZONTES))), axis=1)
+    dados = pd.DataFrame({"dog_id": np.arange(n), "particao": "teste", "tempo": t, "evento": e, "idade": idade})
+    pred = pd.DataFrame(risco, columns=mc.COLS_RISCO).assign(dog_id=np.arange(n))
+    cal = mc.calibracao_por_grupo(pred, dados=dados)
+    g = cal[cal.estrato == "geral"]
+    assert len(g) == 10 and g.n.sum() == n and g.n.max() - g.n.min() <= 1
+    assert (np.diff(g.previsto) > 0).all()                       # grupos em ordem de risco
+    i2 = mc.HORIZONTES.index(mc.H_CALIB)
+    k1 = np.argsort(risco[:, i2], kind="stable")[: g.n.iloc[0]]  # 1º decil = menores riscos
+    assert np.isclose(g.observado.iloc[0], mc.km_risco(t[k1], e[k1], mc.H_CALIB))
+    assert cal[cal.estrato != "geral"].groupby("estrato").size().eq(5).all()
+
+
 if __name__ == "__main__":  # roda sem pytest: python test_modelagem.py
     import traceback
     falhas = 0
