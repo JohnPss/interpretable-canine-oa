@@ -1,0 +1,12 @@
+Coortes ['DAP Pack', 'Foundation']: 49077 cães | fora (outras coortes): {'Precision': 976, 'Precision - Brain Health Study': 135}
+  excluídos sem data de sobrevida: 75 | sem acompanhamento após o HLES: 8646
+Incluídos: 40356 cães | 39886 tutores | óbitos até 2024-12-31: 12079 | óbitos após o corte (censurados): 2659
+  cão-anos: 89522 | taxa: 134.9 por 1.000 cão-anos
+  seguimento (anos): mediana 2.07, máx 5.02
+  óbitos com data estimada: 1319
+  empates: 1604 tempos distintos (dias) para 12079 óbitos; 99.4% dos óbitos em tempo empatado
+  óbitos com EOLS: 10175 (84%)
+  causa: {'doenca': 6060, 'velhice': 3087, 'outra': 305, 'trauma': 288, 'subita': 260, 'anestesia_cirurgia': 74, 'comportamento': 68, 'toxina': 28, 'pessoal': 5}
+  tipo de doença fatal: {'cancer': 3195, 'outra_doenca': 2295, 'desconhecida': 439, 'infeccao': 131}
+  tutores com >1 cão entre os incluídos: 469
+  por ano de HLES: {2019: {'n': 17, 'obitos': 6}, 2020: {'n': 24119, 'obitos': 8869}, 2021: {'n': 4439, 'obitos': 1302}, 2022: {'n': 7676, 'obitos': 1455}, 2023: {'n': 2564, 'obitos': 358}, 2024: {'n': 1541, 'obitos': 89}}

@@ -77,13 +77,16 @@ def main():
 
     # --- Relatório (só agregados) ---
     inc = d[d.incluido == 1]
-    print(f"Coortes {COHORTS}: {len(d)} cães")
+    print(f"Coortes {COHORTS}: {len(d)} cães | fora (outras coortes): {ov[~ov.Cohort.isin(COHORTS)].Cohort.value_counts().to_dict()}")
     print(f"  excluídos sem data de sobrevida: {sem_data.sum()} | sem acompanhamento após o HLES: {sem_seguimento.sum()}")
     print(f"Incluídos: {len(inc)} cães | {inc.owner_id.nunique()} tutores | óbitos até {CORTE.date()}: {inc.evento.sum()} "
           f"| óbitos após o corte (censurados): {inc.obito_pos_corte.sum()}")
     print(f"  cão-anos: {inc.tempo.sum():.0f} | taxa: {1000 * inc.evento.sum() / inc.tempo.sum():.1f} por 1.000 cão-anos")
     print(f"  seguimento (anos): mediana {inc.tempo.median():.2f}, máx {inc.tempo.max():.2f}")
     print(f"  óbitos com data estimada: {inc.obito_data_estimada[inc.evento == 1].sum()}")
+    dias_obito = (inc.tempo[inc.evento == 1] * DIAS_ANO).round()
+    print(f"  empates: {dias_obito.nunique()} tempos distintos (dias) para {len(dias_obito)} óbitos; "
+          f"{dias_obito.duplicated(keep=False).mean():.1%} dos óbitos em tempo empatado")
     ev = inc[inc.evento == 1]
     print(f"  óbitos com EOLS: {ev.causa_morte.notna().sum()} ({ev.causa_morte.notna().mean():.0%})")
     print("  causa:", ev.causa_morte.value_counts().to_dict())
