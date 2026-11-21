@@ -1,0 +1,52 @@
+[   0.0 min] dados: 40356 cães, 12079 óbitos
+[   0.0 min] == clf2a
+[   0.0 min] clf2a:
+            modelo  limiar  auc_ipcw     ap  auc_10_13        VP        FN        FP        VN  sensibilidade  especificidade    vpp     f1  acuracia  acuracia_balanceada
+0        cox_idade   0.196     0.859  0.622      0.597  1365.960   259.652  1762.283  4731.224          0.840           0.729  0.437  0.575     0.751                0.784
+1  cox_idade_porte   0.236     0.871  0.651      0.685  1289.487   336.125  1358.192  5135.315          0.793           0.791  0.487  0.604     0.791                0.792
+2       cox_linear   0.204     0.887  0.709      0.745  1358.261   267.352  1419.929  5073.579          0.836           0.781  0.489  0.617     0.792                0.808
+3          xgb_cox   0.214     0.888  0.709      0.753  1342.284   283.329  1327.324  5166.183          0.826           0.796  0.503  0.625     0.802                0.811
+4          maioria     inf     0.500  0.200        NaN     0.000  1625.612     0.000  6493.507          0.000           1.000    NaN  0.000     0.800                0.500
+{
+ "prevalencia_ipcw": 0.2002202766806997,
+ "prevalencia_ingenua": 0.2266042780748663,
+ "km_2a_teste": 0.2004520739443546,
+ "n_teste": 8073,
+ "n_casos": 1356,
+ "n_controles": 4628,
+ "n_indeterminados": 2089,
+ "obitos_total": 2417,
+ "prop_obitos_total": 0.2993930385234733,
+ "km_2a_por_faixa": {
+  "< 7 anos": 0.030594796166860116,
+  "7\u201310 anos": 0.15725327134677858,
+  "10\u201313 anos": 0.37866648222088795,
+  "13+ anos": 0.7050384704982529
+ }
+}
+[   0.0 min] == shap
+[   2.2 min] shap:
+                                  grupo  shap_xgb  shap_xgb_sem_saude  contrib_cox  dp_folds  min_folds  max_folds
+idade                          Estáveis    1.2784              1.4160       1.0135    0.0105     1.2649     1.2940
+peso_kg                  Estilo de vida    0.2198              0.2516       0.1951    0.0099     0.2067     0.2328
+saude_geral            Saúde na entrada    0.1525                 NaN       0.1998    0.0047     0.1444     0.1566
+raca_pura                      Estáveis    0.0759              0.1117       0.1003    0.0046     0.0704     0.0818
+brincadeira_freq         Estilo de vida    0.0746              0.0959       0.0848    0.0094     0.0626     0.0854
+porte                          Estáveis    0.0537              0.0592       0.1017    0.0043     0.0474     0.0582
+n_sistemas_doenca      Saúde na entrada    0.0388                 NaN       0.0260    0.0042     0.0375     0.0459
+atividade_intensidade    Estilo de vida    0.0325              0.0683       0.0690    0.0034     0.0279     0.0360
+peso_mudanca_12m         Estilo de vida    0.0254              0.0271       0.0373    0.0044     0.0191     0.0287
+atividade_nivel          Estilo de vida    0.0251              0.0597       0.0460    0.0044     0.0169     0.0278
+doenca_cancer          Saúde na entrada    0.0178                 NaN       0.0262    0.0027     0.0119     0.0186
+alimentacao              Estilo de vida    0.0175              0.0231       0.0293    0.0011     0.0171     0.0200
+passeio_guia_freq        Estilo de vida    0.0159              0.0133       0.0189    0.0058     0.0106     0.0264
+castracao                      Estáveis    0.0152              0.0175       0.0396    0.0032     0.0110     0.0190
+doenca_neurologica     Saúde na entrada    0.0141                 NaN       0.0193    0.0028     0.0101     0.0177
+                  xgb_cox  xgb_sem_saude
+Estáveis           1.2823         1.4135
+Estilo de vida     0.2627         0.3245
+Saúde na entrada   0.2110            NaN
+{"rho_folds_media": 0.9622326203208557, "rho_folds_min": 0.9461898395721926, "top10_overlap": [9, 10, 10, 9, 10], "rho_xgb_cox": 0.910427807486631, "soma_abs_efeitos_principais": 2.0799351709410203, "soma_abs_interacoes": 0.6283809420683032, "interacoes_a_priori": [{"par": "idade x porte", "media_abs": 0.026306273109512404}, {"par": "idade x castracao", "media_abs": 0.013355693913363212}, {"par": "porte x castracao", "media_abs": 0.0011296335558145074}, {"par": "idade x atividade_nivel", "media_abs": 0.0044110771142877635}, {"par": "idade x saude_geral", "media_abs": 0.021660524123639335}], "top_interacoes": [{"par": "idade x peso_kg", "media_abs": 0.08834067849325948}, {"par": "idade x raca_pura", "media_abs": 0.03461438753642142}, {"par": "idade x porte", "media_abs": 0.026306273109512404}, {"par": "idade x brincadeira_freq", "media_abs": 0.023819791829388124}, {"par": "idade x saude_geral", "media_abs": 0.021660524123639335}]}
+[   2.2 min] == descr
+[   2.2 min] descr: {"obitos": 12079, "obitos_com_eols": 10175, "eutanasia": 8770, "prop_eutanasia": 0.8619164619164619, "prop_obitos_data_estimada": 0.10919778127328421, "prop_renda_120k_mais": 0.3833630686886708, "prop_graduacao_ou_mais": 0.8000297353553375}
+[   2.2 min] fim

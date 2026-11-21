@@ -1,0 +1,248 @@
+[   0.0 min] dados: 40356 cães, 12079 óbitos
+[   0.0 min] == cv
+/home/johnpss/Desktop/Dogs/.venv/lib/python3.12/site-packages/lifelines/utils/__init__.py:1100: ConvergenceWarning: Column(s) ['alimentacao_infrequent_sklearn'] have very low variance. This may harm convergence. 1) Are you using formula's? Did you mean to add '-1' to the end. 2) Try dropping this redundant column before fitting if convergence fails.
+
+  warnings.warn(dedent(warning_text), ConvergenceWarning)
+/home/johnpss/Desktop/Dogs/.venv/lib/python3.12/site-packages/lifelines/utils/__init__.py:1100: ConvergenceWarning: Column(s) ['alimentacao_infrequent_sklearn'] have very low variance. This may harm convergence. 1) Are you using formula's? Did you mean to add '-1' to the end. 2) Try dropping this redundant column before fitting if convergence fails.
+
+  warnings.warn(dedent(warning_text), ConvergenceWarning)
+/home/johnpss/Desktop/Dogs/.venv/lib/python3.12/site-packages/lifelines/utils/__init__.py:1100: ConvergenceWarning: Column(s) ['alimentacao_infrequent_sklearn'] have very low variance. This may harm convergence. 1) Are you using formula's? Did you mean to add '-1' to the end. 2) Try dropping this redundant column before fitting if convergence fails.
+
+  warnings.warn(dedent(warning_text), ConvergenceWarning)
+/home/johnpss/Desktop/Dogs/.venv/lib/python3.12/site-packages/lifelines/utils/__init__.py:1100: ConvergenceWarning: Column(s) ['alimentacao_infrequent_sklearn'] have very low variance. This may harm convergence. 1) Are you using formula's? Did you mean to add '-1' to the end. 2) Try dropping this redundant column before fitting if convergence fails.
+
+  warnings.warn(dedent(warning_text), ConvergenceWarning)
+/home/johnpss/Desktop/Dogs/.venv/lib/python3.12/site-packages/lifelines/utils/__init__.py:1100: ConvergenceWarning: Column(s) ['alimentacao_infrequent_sklearn'] have very low variance. This may harm convergence. 1) Are you using formula's? Did you mean to add '-1' to the end. 2) Try dropping this redundant column before fitting if convergence fails.
+
+  warnings.warn(dedent(warning_text), ConvergenceWarning)
+/home/johnpss/Desktop/Dogs/.venv/lib/python3.12/site-packages/lifelines/utils/__init__.py:1100: ConvergenceWarning: Column(s) ['alimentacao_infrequent_sklearn'] have very low variance. This may harm convergence. 1) Are you using formula's? Did you mean to add '-1' to the end. 2) Try dropping this redundant column before fitting if convergence fails.
+
+  warnings.warn(dedent(warning_text), ConvergenceWarning)
+/home/johnpss/Desktop/Dogs/.venv/lib/python3.12/site-packages/lifelines/utils/__init__.py:1100: ConvergenceWarning: Column(s) ['alimentacao_infrequent_sklearn'] have very low variance. This may harm convergence. 1) Are you using formula's? Did you mean to add '-1' to the end. 2) Try dropping this redundant column before fitting if convergence fails.
+
+  warnings.warn(dedent(warning_text), ConvergenceWarning)
+/home/johnpss/Desktop/Dogs/.venv/lib/python3.12/site-packages/lifelines/utils/__init__.py:1100: ConvergenceWarning: Column(s) ['alimentacao_infrequent_sklearn'] have very low variance. This may harm convergence. 1) Are you using formula's? Did you mean to add '-1' to the end. 2) Try dropping this redundant column before fitting if convergence fails.
+
+  warnings.warn(dedent(warning_text), ConvergenceWarning)
+/home/johnpss/Desktop/Dogs/.venv/lib/python3.12/site-packages/lifelines/utils/__init__.py:1100: ConvergenceWarning: Column(s) ['alimentacao_infrequent_sklearn'] have very low variance. This may harm convergence. 1) Are you using formula's? Did you mean to add '-1' to the end. 2) Try dropping this redundant column before fitting if convergence fails.
+
+  warnings.warn(dedent(warning_text), ConvergenceWarning)
+[   1.6 min] cv:                       c_index_mean  c_index_std  c_intrafaixa_mean  c_ajuste_mean
+modelo                                                                           
+cox_estaveis                 0.843        0.003              0.659          0.844
+cox_idade                    0.832        0.003              0.613          0.832
+cox_idade_porte              0.842        0.003              0.656          0.842
+cox_idade_porte_nsis         0.844        0.003              0.663          0.844
+cox_linear                   0.854        0.003              0.695          0.855
+cox_sem_saude                0.847        0.003              0.674          0.848
+cox_sem_saude_sinais         0.847        0.003              0.673          0.848
+xgb_cox                      0.855        0.003              0.699          0.862
+xgb_estaveis                 0.844        0.003              0.662          0.846
+xgb_sem_saude                0.849        0.003              0.679          0.851
+xgb_sem_saude_sinais         0.848        0.003              0.677          0.851
+[   1.6 min] == teste
+[   1.7 min] teste: cox_idade ajustado
+[   1.7 min] teste: cox_idade_porte ajustado
+[   1.7 min] teste: cox_idade_porte_nsis ajustado
+[   1.8 min] teste: cox_estaveis ajustado
+[   1.8 min] teste: cox_sem_saude_sinais ajustado
+[   1.9 min] teste: cox_sem_saude ajustado
+[   1.9 min] teste: cox_linear ajustado
+[   1.9 min] teste: xgb_estaveis ajustado
+[   2.0 min] teste: xgb_sem_saude_sinais ajustado
+[   2.0 min] teste: xgb_sem_saude ajustado
+[   2.1 min] teste: xgb_cox ajustado
+[   2.1 min] reprodutibilidade:
+                 modelo  corr  dif_abs_max_risco2a
+0               xgb_cox   1.0         1.110223e-16
+1            cox_linear   1.0         1.110223e-16
+2             cox_idade   1.0         1.110223e-16
+3     xgb_cox_sem_saude   1.0         1.110223e-16
+4  cox_linear_sem_saude   1.0         1.110223e-16
+[  32.4 min] teste: estrato               10–13 anos  13+ anos  7–10 anos  < 7 anos  geral
+modelo                                                                
+cox_estaveis               0.642     0.619      0.661     0.675  0.842
+cox_idade                  0.571     0.589      0.588     0.626  0.830
+cox_idade_porte            0.638     0.619      0.653     0.672  0.841
+cox_idade_porte_nsis       0.648     0.629      0.658     0.683  0.844
+cox_linear                 0.681     0.684      0.686     0.699  0.854
+cox_sem_saude              0.665     0.649      0.656     0.683  0.846
+cox_sem_saude_sinais       0.664     0.639      0.656     0.685  0.846
+xgb_cox                    0.688     0.692      0.690     0.700  0.855
+xgb_estaveis               0.643     0.619      0.661     0.676  0.843
+xgb_sem_saude              0.669     0.650      0.664     0.685  0.848
+xgb_sem_saude_sinais       0.668     0.641      0.663     0.686  0.848
+[  32.4 min] == sementes
+[  32.5 min] sementes:       c_index  auc_tempo@1  auc_tempo@2  auc_tempo@3  cal_oe@2  brier@2  uno_c@3  c_intrafaixa       n  n_obitos
+mean   0.8551       0.8948       0.8876       0.8830    1.0369   0.0970   0.8498        0.6917  8073.0    2417.0
+std    0.0002       0.0003       0.0002       0.0002    0.0006   0.0001   0.0002        0.0005     0.0       0.0
+[  32.5 min] == clf2a
+[  32.5 min] clf2a:
+            modelo  limiar  auc_ipcw     ap  auc_10_13        VP        FN        FP        VN  sensibilidade  especificidade    vpp     f1  acuracia  acuracia_balanceada
+0        cox_idade   0.196     0.859  0.622      0.597  1365.960   259.652  1762.283  4731.224          0.840           0.729  0.437  0.575     0.751                0.784
+1  cox_idade_porte   0.236     0.871  0.651      0.685  1289.487   336.125  1358.192  5135.315          0.793           0.791  0.487  0.604     0.791                0.792
+2       cox_linear   0.204     0.887  0.709      0.745  1358.261   267.352  1419.929  5073.579          0.836           0.781  0.489  0.617     0.792                0.808
+3          xgb_cox   0.214     0.888  0.709      0.753  1342.284   283.329  1327.324  5166.183          0.826           0.796  0.503  0.625     0.802                0.811
+4          maioria     inf     0.500  0.200        NaN     0.000  1625.612     0.000  6493.507          0.000           1.000    NaN  0.000     0.800                0.500
+{
+ "prevalencia_ipcw": 0.2002202766806997,
+ "prevalencia_ingenua": 0.2266042780748663,
+ "km_2a_teste": 0.2004520739443546,
+ "n_teste": 8073,
+ "n_casos": 1356,
+ "n_controles": 4628,
+ "n_indeterminados": 2089,
+ "obitos_total": 2417,
+ "prop_obitos_total": 0.2993930385234733,
+ "km_2a_por_faixa": {
+  "< 7 anos": 0.030594796166860116,
+  "7\u201310 anos": 0.15725327134677858,
+  "10\u201313 anos": 0.37866648222088795,
+  "13+ anos": 0.7050384704982529
+ }
+}
+[  32.6 min] == vieses
+[  32.6 min] seleção SMD:
+             variavel  incluidos  excluidos    smd
+0          idade_hles      6.934      5.986  0.224
+1               femea      0.500      0.486  0.029
+2            castrado      0.888      0.853  0.106
+3           raca_pura      0.503      0.493  0.021
+4          foundation      0.151      0.009  0.543
+5     entrada_2023_24      0.102      0.300 -0.511
+6          renda_120k      0.383      0.402 -0.038
+7      renda_nao_resp      0.126      0.106  0.064
+8   graduacao_ou_mais      0.800      0.754  0.110
+9     porte_Toy/Small      0.219      0.217  0.004
+10       porte_Medium      0.185      0.180  0.014
+11     porte_Standard      0.276      0.272  0.009
+12        porte_Large      0.254      0.255 -0.003
+13        porte_Giant      0.066      0.076 -0.038
+   hles_ano   size      mean
+0      2019     22  0.772727
+1      2020  26634  0.905572
+2      2021   5503  0.806651
+3      2022  10145  0.756629
+4      2023   3916  0.654750
+5      2024   2782  0.553918
+[  32.7 min] vieses: censura simétrica ok
+[  33.0 min] vieses: sensibilidades
+                                cenario      modelo  c_index  c_intrafaixa  cal_oe@2     n  n_obitos
+0                             principal   cox_idade    0.830         0.593     1.037  8073      2417
+1                             principal  cox_linear    0.854         0.687     1.040  8073      2417
+2                             principal     xgb_cox    0.855         0.692     1.037  8073      2417
+3                           ipw_selecao   cox_idade    0.830         0.593     1.061  8073      2417
+4                           ipw_selecao  cox_linear    0.853         0.687     1.066  8073      2417
+5                           ipw_selecao     xgb_cox    0.855         0.692     1.065  8073      2417
+6           censura_simetrica_avaliacao   cox_idade    0.843         0.597     1.013  7894      2035
+7           censura_simetrica_avaliacao  cox_linear    0.867         0.696     1.017  7894      2035
+8           censura_simetrica_avaliacao     xgb_cox    0.868         0.700     1.015  7894      2035
+9            censura_simetrica_retreino   cox_idade    0.843         0.597     1.010  7894      2035
+10           censura_simetrica_retreino  cox_linear    0.867         0.697     1.010  7894      2035
+11           censura_simetrica_retreino     xgb_cox    0.868         0.699     1.006  7894      2035
+12                  sem_datas_estimadas   cox_idade    0.839         0.599     1.034  7733      2151
+13                  sem_datas_estimadas  cox_linear    0.863         0.699     1.040  7733      2151
+14                  sem_datas_estimadas     xgb_cox    0.864         0.703     1.037  7733      2151
+15                landmark_1a_avaliacao   cox_idade    0.811         0.591     1.455  6380      1705
+16                landmark_1a_avaliacao  cox_linear    0.831         0.661     1.544  6380      1705
+17                landmark_1a_avaliacao     xgb_cox    0.833         0.664     1.552  6380      1705
+18                     temporal_2022_24   cox_idade    0.860         0.593     1.302  2310       375
+19                     temporal_2022_24  cox_linear    0.878         0.681     1.303  2310       375
+20                     temporal_2022_24     xgb_cox    0.880         0.692     1.307  2310       375
+21  subconjunto_2022_24_modelo_completo   cox_idade    0.860         0.593     1.263  2310       375
+22  subconjunto_2022_24_modelo_completo  cox_linear    0.878         0.681     1.261  2310       375
+23  subconjunto_2022_24_modelo_completo     xgb_cox    0.880         0.689     1.268  2310       375
+24              mais_renda_escolaridade     xgb_cox    0.855         0.692     1.036  8073      2417
+25              mais_renda_escolaridade  cox_linear    0.854         0.688     1.040  8073      2417
+26                    mais_dieta_versao     xgb_cox    0.855         0.692     1.029  8073      2417
+27                    mais_dieta_versao  cox_linear    0.854         0.688     1.032  8073      2417
+[  37.2 min] subgrupos:
+              grupo               nivel     n  n_obitos  c_xgb_cox  oe_xgb_cox  c_cox_idade  oe_cox_idade  oe_xgb_cox_simetrica     dc  dc_lo  dc_hi  c_xgb_lo  c_xgb_hi
+0            Coorte            DAP Pack  6834      2232      0.845       1.079        0.818         1.089                 1.057  0.027  0.023  0.030     0.836     0.852
+1            Coorte          Foundation  1239       185      0.842       0.705        0.806         0.622                 0.712  0.036  0.022  0.051     0.812     0.875
+2   Idade informada  ano e mês de nasc.  6115      1695      0.862       1.026        0.838         1.029                 1.001  0.023  0.020  0.027     0.852     0.870
+3   Idade informada     só ano de nasc.   550       186      0.846       0.988        0.827         0.987                 0.966  0.019  0.007  0.031     0.815     0.875
+4   Idade informada     idade declarada  1408       536      0.826       1.091        0.790         1.084                 1.079  0.036  0.028  0.045     0.808     0.845
+5              Raça                pura  4094      1260      0.853       1.058        0.826         1.135                 1.030  0.027  0.022  0.032     0.842     0.864
+6              Raça           SRD/mista  3979      1157      0.858       1.014        0.837         0.946                 0.997  0.021  0.017  0.025     0.848     0.869
+7              Sexo               fêmea  4083      1241      0.855       1.051        0.828         1.083                 1.024  0.027  0.023  0.033     0.846     0.864
+8              Sexo               macho  3990      1176      0.855       1.022        0.833         0.992                 1.005  0.023  0.018  0.027     0.844     0.865
+9             Porte              padrão  2224       609      0.862       1.065        0.852         1.075                 1.033  0.009  0.005  0.013     0.844     0.879
+10            Porte              grande  1994       646      0.841       1.019        0.830         1.284                 1.010  0.011  0.007  0.017     0.826     0.855
+11            Porte         toy/pequeno  1813       582      0.859       1.027        0.841         0.832                 1.004  0.019  0.013  0.023     0.848     0.876
+12            Porte               médio  1522       399      0.869       0.979        0.857         0.840                 0.954  0.012  0.007  0.018     0.851     0.886
+13            Porte             gigante   520       181      0.813       1.171        0.790         2.075                 1.158  0.022  0.010  0.037     0.781     0.846
+14   Ano de entrada             2019–20  4841      1779      0.850       0.967        0.824         0.962                 0.967  0.026  0.021  0.030     0.841     0.857
+15   Ano de entrada                2021   922       263      0.847       1.015        0.820         1.054                 0.971  0.027  0.016  0.037     0.817     0.873
+16   Ano de entrada             2022–24  2310       375      0.880       1.268        0.860         1.263                 1.162  0.020  0.013  0.025     0.865     0.894
+17  Versão da dieta            até 2022  6855      2263      0.852       1.001        0.827         1.003                 0.989  0.025  0.022  0.029     0.845     0.860
+18  Versão da dieta           após 2022  1218       154      0.884       1.482        0.859         1.468                 1.276  0.026  0.015  0.035     0.861     0.904
+19   Renda familiar       ≥ US$ 120 mil  3108       849      0.871       1.029        0.843         1.024                 0.987  0.027  0.023  0.032     0.860     0.880
+20   Renda familiar      US$ 80–120 mil  1719       538      0.848       0.998        0.826         1.006                 0.974  0.022  0.016  0.030     0.831     0.864
+21   Renda familiar       US$ 40–80 mil  1596       505      0.840       1.122        0.820         1.112                 1.119  0.020  0.012  0.028     0.824     0.858
+22   Renda familiar       não respondeu  1056       337      0.853       1.008        0.823         1.020                 0.998  0.030  0.019  0.039     0.832     0.874
+23   Renda familiar        < US$ 40 mil   594       188      0.845       1.020        0.817         1.026                 1.019  0.027  0.014  0.037     0.813     0.874
+[  37.3 min] HR:
+especificacao            A_estaveis_estilo  B_principal  C_principal_renda  D_principal_landmark1a
+variavel                                                                                          
+alimentacao=1x                       0.978        1.032              1.026                   0.983
+apetite=fraco                        1.030        0.922              0.918                   0.871
+atividade_nivel                      0.864        0.931              0.931                   0.933
+castracao=6-12m                      0.918        0.896              0.906                   0.868
+castracao=<6m                        0.886        0.883              0.893                   0.834
+dieta_principal=caseira              1.054        1.017              1.009                   0.969
+minutos_ativos_dia                   0.990        0.994              0.990                   0.980
+n_sistemas_doenca                      NaN        1.016              1.019                   1.023
+peso_kg                              1.288        1.316              1.312                   1.298
+peso_mudanca_12m=perdeu              1.403        1.194              1.191                   1.039
+porte                                1.146        1.116              1.120                   1.124
+renda=120k+                            NaN          NaN              1.018                     NaN
+renda=<40k                             NaN          NaN              1.044                     NaN
+saude_geral                            NaN        1.284              1.283                   1.170
+sobrepeso_ever=sim                   0.957        0.886              0.884                   0.912
+censura: {"c_censura_teste": 0.6040959471476236, "top_hr": {"idade": 0.6743174193864209, "dieta_principal_outra": 0.8284539905792331, "regiao_div_7": 1.1332586210666473, "castracao_6-8a": 1.1285438856083188, "castracao_<6m": 0.8979209097092837, "castracao_4-6a": 1.1065661169972756, "doenca_imunomediada": 0.9073232754338577, "dieta_principal_comercial_seca": 0.910819428207609}, "prop_censurados_antes_2a": 0.25876378050291093}
+[  37.3 min] == vazamento
+[  37.4 min] vazamento:
+   semente  c_teste  c_intrafaixa
+0        1    0.533         0.493
+1        2    0.521         0.519
+2        3    0.531         0.514
+3        4    0.469         0.482
+4        5    0.528         0.509
+5        6    0.455         0.499
+6        7    0.507         0.495
+7        8    0.468         0.500
+8        9    0.496         0.478
+9       10    0.485         0.482
+                 atributo      c  c_abs
+0                   idade  0.830  0.830
+10            saude_geral  0.720  0.720
+3       n_sistemas_doenca  0.710  0.710
+9        brincadeira_freq  0.335  0.665
+6   atividade_intensidade  0.358  0.642
+5         atividade_nivel  0.367  0.633
+tutores comuns: 0
+[  37.4 min] == shap
+[  39.6 min] shap:
+                                  grupo  shap_xgb  shap_xgb_sem_saude  contrib_cox  dp_folds  min_folds  max_folds
+idade                          Estáveis    1.2784              1.4160       1.0135    0.0105     1.2649     1.2940
+peso_kg                  Estilo de vida    0.2198              0.2516       0.1951    0.0099     0.2067     0.2328
+saude_geral            Saúde na entrada    0.1525                 NaN       0.1998    0.0047     0.1444     0.1566
+raca_pura                      Estáveis    0.0759              0.1117       0.1003    0.0046     0.0704     0.0818
+brincadeira_freq         Estilo de vida    0.0746              0.0959       0.0848    0.0094     0.0626     0.0854
+porte                          Estáveis    0.0537              0.0592       0.1017    0.0043     0.0474     0.0582
+n_sistemas_doenca      Saúde na entrada    0.0388                 NaN       0.0260    0.0042     0.0375     0.0459
+atividade_intensidade    Estilo de vida    0.0325              0.0683       0.0690    0.0034     0.0279     0.0360
+peso_mudanca_12m         Estilo de vida    0.0254              0.0271       0.0373    0.0044     0.0191     0.0287
+atividade_nivel          Estilo de vida    0.0251              0.0597       0.0460    0.0044     0.0169     0.0278
+doenca_cancer          Saúde na entrada    0.0178                 NaN       0.0262    0.0027     0.0119     0.0186
+alimentacao              Estilo de vida    0.0175              0.0231       0.0293    0.0011     0.0171     0.0200
+passeio_guia_freq        Estilo de vida    0.0159              0.0133       0.0189    0.0058     0.0106     0.0264
+castracao                      Estáveis    0.0152              0.0175       0.0396    0.0032     0.0110     0.0190
+doenca_neurologica     Saúde na entrada    0.0141                 NaN       0.0193    0.0028     0.0101     0.0177
+                  xgb_cox  xgb_sem_saude
+Estáveis           1.2823         1.4135
+Estilo de vida     0.2627         0.3245
+Saúde na entrada   0.2110            NaN
+{"rho_folds_media": 0.9622326203208557, "rho_folds_min": 0.9461898395721926, "top10_overlap": [9, 10, 10, 9, 10], "rho_xgb_cox": 0.910427807486631, "soma_abs_efeitos_principais": 2.0799351709410203, "soma_abs_interacoes": 0.6283809420683032, "interacoes_a_priori": [{"par": "idade x porte", "media_abs": 0.026306273109512404}, {"par": "idade x castracao", "media_abs": 0.013355693913363212}, {"par": "porte x castracao", "media_abs": 0.0011296335558145074}, {"par": "idade x atividade_nivel", "media_abs": 0.0044110771142877635}, {"par": "idade x saude_geral", "media_abs": 0.021660524123639335}], "top_interacoes": [{"par": "idade x peso_kg", "media_abs": 0.08834067849325948}, {"par": "idade x raca_pura", "media_abs": 0.03461438753642142}, {"par": "idade x porte", "media_abs": 0.026306273109512404}, {"par": "idade x brincadeira_freq", "media_abs": 0.023819791829388124}, {"par": "idade x saude_geral", "media_abs": 0.021660524123639335}]}
+[  39.6 min] fim

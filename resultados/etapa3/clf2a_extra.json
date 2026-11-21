@@ -1,0 +1,17 @@
+{
+ "prevalencia_ipcw": 0.2002202766806997,
+ "prevalencia_ingenua": 0.2266042780748663,
+ "km_2a_teste": 0.2004520739443546,
+ "n_teste": 8073,
+ "n_casos": 1356,
+ "n_controles": 4628,
+ "n_indeterminados": 2089,
+ "obitos_total": 2417,
+ "prop_obitos_total": 0.2993930385234733,
+ "km_2a_por_faixa": {
+  "< 7 anos": 0.030594796166860116,
+  "7\u201310 anos": 0.15725327134677858,
+  "10\u201313 anos": 0.37866648222088795,
+  "13+ anos": 0.7050384704982529
+ }
+}

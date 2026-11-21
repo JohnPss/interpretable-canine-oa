@@ -1,0 +1,14 @@
+{
+ "c_censura_teste": 0.6040959471476236,
+ "top_hr": {
+  "idade": 0.6743174193864209,
+  "dieta_principal_outra": 0.8284539905792331,
+  "regiao_div_7": 1.1332586210666473,
+  "castracao_6-8a": 1.1285438856083188,
+  "castracao_<6m": 0.8979209097092837,
+  "castracao_4-6a": 1.1065661169972756,
+  "doenca_imunomediada": 0.9073232754338577,
+  "dieta_principal_comercial_seca": 0.910819428207609
+ },
+ "prop_censurados_antes_2a": 0.25876378050291093
+}
