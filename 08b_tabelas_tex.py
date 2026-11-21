@@ -27,12 +27,12 @@ def n0(x):
 
 
 ROT = {"cox_idade": "Só idade", "cox_idade_porte": "Idade + porte",
-       "cox_idade_porte_nsis": "Idade + porte + nº sistemas", "cox_estaveis": "Cox, só estáveis",
+       "cox_idade_porte_nsis": "Idade + porte + n.\\textsuperscript{o} sistemas", "cox_estaveis": "Cox, só estáveis",
        "cox_sem_saude_sinais": "Cox, sem saúde e sinais", "cox_sem_saude": "Cox, sem saúde",
        "cox_linear": "\\textbf{Cox linear}", "xgb_estaveis": "XGB, só estáveis",
        "xgb_sem_saude_sinais": "XGB, sem saúde e sinais", "xgb_sem_saude": "XGB, sem saúde",
        "xgb_cox": "\\textbf{XGBoost Cox}"}
-ORDEM = list(ROT)
+ORDEM = [m for m in ROT if m not in ("cox_estaveis", "cox_sem_saude_sinais", "cox_sem_saude")]  # ablações do Cox: ≤0,002 do XGB, no texto
 
 
 def tab_resultados():
@@ -63,7 +63,7 @@ CV: média $\pm$ desvio-padrão em 15 partições (5 \textit{folds} $\times$ 3 r
                  + " & ".join(f(g(mod, 'geral', k).valor) for k in ["uno_c@3", "auc_tempo@2", "brier@2", "cal_oe@2"])
                  + f" & {f(cv.loc[mod, 'c_index_mean'])} $\\pm$ {f(cv.loc[mod, 'c_index_std'])}"
                  + f" & {f(cv.loc[mod, 'c_intrafaixa_mean'])} $\\pm$ {f(cv.loc[mod, 'c_intrafaixa_std'])} \\\\")
-        if mod in ("cox_idade_porte_nsis", "cox_linear"):
+        if mod in ("cox_idade_porte_nsis", "cox_linear"):  # separadores
             L.append("\\hline")
     L.append("\\hline\n\\end{tabular}\n\\end{table*}\n")
     (TAB / "tab_resultados.tex").write_text("\n".join(L))
@@ -158,6 +158,7 @@ $\Delta C$: ganho sobre o modelo só com idade (IC 95\%, 200 réplicas de tutore
 \hline
 \textbf{Subgrupo} & \textbf{Cães} & \textbf{Óbitos} & \textbf{\shortstack{C\\XGB}} & \textbf{$\Delta C$ vs idade} & \textbf{\shortstack{O/E\\XGB}} & \textbf{\shortstack{O/E\\idade}} \\
 \hline"""]
+    s = s[~s.grupo.isin(["Sexo", "Raça"])]  # sem diferenças relevantes (CSV completo em resultados/etapa3)
     for grupo, d in s.groupby("grupo", sort=False):
         L.append(f"\\multicolumn{{7}}{{|l|}}{{\\textit{{{grupo}}}}} \\\\")
         for _, r in d.iterrows():
@@ -202,7 +203,7 @@ com o tempo contado a partir daí. Associações condicionais ao conjunto de aju
 
 
 def figuras():
-    for nome in ["roc_pr_2a.pdf", "calibracao_2a.pdf", "shap.pdf"]:
+    for nome in ["roc_pr_2a.pdf", "shap.pdf"]:
         shutil.copy(ROOT / "figuras" / "etapa3" / nome, FIGA / nome)
 
 

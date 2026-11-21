@@ -403,49 +403,42 @@ def secao_clf2a(df):
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    plt.rcParams.update({"font.size": 8, "font.family": "serif"})
+    plt.rcParams.update({"font.size": 6.5, "font.family": "serif"})
     cores = {"cox_idade": "#9e9e9e", "cox_idade_porte": "#6a51a3", "cox_linear": "#2171b5", "xgb_cox": "#d94801"}
     estilos = {"cox_idade": ":", "cox_idade_porte": "-.", "cox_linear": "--", "xgb_cox": "-"}
-    fig, ax = plt.subplots(1, 3, figsize=(7.1, 2.35))
-    for nome in cores:
-        for i, chave in enumerate([nome, nome + "_10_13"]):
-            c = curv[chave]
-            ax[i].plot(np.r_[0, c["fpr"]], np.r_[0, c["tpr"]], estilos[nome], color=cores[nome], lw=1.1,
-                       label=f"{ROTULO[nome]} ({br(c['auc'])})")
-        c = curv[nome]
-        ax[2].plot(c["tpr"], c["prec"], estilos[nome], color=cores[nome], lw=1.1, label=f"{ROTULO[nome]} ({br(c['ap'])})")
-    for i, tit in enumerate(["(a) ROC, todos os cães", "(b) ROC, 10–13 anos"]):
-        ax[i].plot([0, 1], [0, 1], color="k", lw=0.5)
-        ax[i].set(xlabel="1 − especificidade", ylabel="Sensibilidade", title=tit, xlim=(0, 1), ylim=(0, 1))
-        ax[i].legend(fontsize=5.8, loc="lower right", frameon=False)
-    ax[2].axhline(prev, color="k", lw=0.5)
-    ax[2].set(xlabel="Sensibilidade", ylabel="VPP (precisão)", title="(c) Precisão–sensibilidade", xlim=(0, 1),
-              ylim=(0, 1))
-    ax[2].legend(fontsize=5.8, loc="upper right", frameon=False)
-    virgula(*ax)
-    fig.tight_layout(pad=0.4)
-    fig.savefig(FIG / "roc_pr_2a.pdf")
-    plt.close(fig)
-    # calibração por decil (2 anos)
     cal = []
     for nome in ["cox_idade", "cox_linear", "xgb_cox"]:
         p = pd.read_csv(mc.PROC / f"pred_e3_{nome}_teste.csv")
-        c = mc.calibracao_por_grupo(p, dados=df).query("estrato=='geral'").assign(modelo=nome)
-        cal.append(c)
+        cal.append(mc.calibracao_por_grupo(p, dados=df).query("estrato=='geral'").assign(modelo=nome))
     cal = pd.concat(cal)
     cal.to_csv(OUT / "calibracao_decis.csv", index=False)
-    fig, ax = plt.subplots(figsize=(3.4, 2.6))
+    fig, ax = plt.subplots(1, 4, figsize=(7.16, 2.0))
+    for nome in cores:
+        for i, chave in enumerate([nome, nome + "_10_13"]):
+            c = curv[chave]
+            ax[i].plot(np.r_[0, c["fpr"]], np.r_[0, c["tpr"]], estilos[nome], color=cores[nome], lw=1.0,
+                       label=f"{ROTULO[nome]} ({br(c['auc'])})")
+        c = curv[nome]
+        ax[2].plot(c["tpr"], c["prec"], estilos[nome], color=cores[nome], lw=1.0, label=f"{ROTULO[nome]} ({br(c['ap'])})")
+    for i, tit in enumerate(["(a) ROC, todos", "(b) ROC, 10–13 anos"]):
+        ax[i].plot([0, 1], [0, 1], color="k", lw=0.5)
+        ax[i].set(xlabel="1 − especificidade", ylabel="Sensibilidade", title=tit, xlim=(0, 1), ylim=(0, 1))
+        ax[i].legend(fontsize=5, loc="lower right", frameon=False)
+    ax[2].axhline(prev, color="k", lw=0.5)
+    ax[2].set(xlabel="Sensibilidade", ylabel="VPP (precisão)", title="(c) Precisão–sensibilidade", xlim=(0, 1),
+              ylim=(0, 1))
+    ax[2].legend(fontsize=5, loc="lower left", frameon=False)
     for nome in ["cox_idade", "cox_linear", "xgb_cox"]:
         c = cal[cal.modelo == nome]
-        ax.plot(c.previsto, c.observado, "o" + estilos[nome], color=cores[nome], ms=3, lw=0.9, label=ROTULO[nome])
-    ax.plot([0, 1], [0, 1], color="k", lw=0.5)
+        ax[3].plot(c.previsto, c.observado, "o" + estilos[nome], color=cores[nome], ms=2.2, lw=0.8, label=ROTULO[nome])
     m = cal[["previsto", "observado"]].to_numpy().max() * 1.05
-    ax.set(xlim=(0, m), ylim=(0, m), xlabel="Risco previsto em 2 anos (média do decil)",
-           ylabel="Mortalidade observada (1 − KM)")
-    ax.legend(frameon=False, fontsize=7)
-    virgula(ax)
-    fig.tight_layout(pad=0.3)
-    fig.savefig(FIG / "calibracao_2a.pdf")
+    ax[3].plot([0, m], [0, m], color="k", lw=0.5)
+    ax[3].set(xlim=(0, m), ylim=(0, m), xlabel="Risco previsto (decil)", ylabel="Observado (1 − KM)",
+              title="(d) Calibração por decil")
+    ax[3].legend(frameon=False, fontsize=5, loc="upper left")
+    virgula(*ax)
+    fig.tight_layout(pad=0.3, w_pad=0.6)
+    fig.savefig(FIG / "roc_pr_2a.pdf")
     plt.close(fig)
 
 
@@ -700,6 +693,55 @@ def secao_descr(df):
     log("descr: " + json.dumps(out))
 
 
+def secao_extras(df):
+    """Respostas ao parecer: (1) calibração com IPCW condicional aos atributos (a censura depende do perfil do
+    cão; o KM marginal pode enviesar o O/E); (2) desempenho para óbitos por eutanásia × naturais; (3) idade máxima."""
+    tr, te = df[df.particao == "treino"].reset_index(drop=True), df[df.particao == "teste"].reset_index(drop=True)
+    trc, tec = tr.copy(), te.copy()
+    trc["evento"], tec["evento"] = 1 - tr.evento, 1 - te.evento
+    ajc = Ajuste("cens", trc, cols=fc.MODELO_PRINCIPAL + ["renda"], espec=("cox", 0.01, None))
+    Xc = ajc.pre.transform(te[ajc.cols])
+    H0 = ajc.mod.baseline_cumulative_hazard_.iloc[:, 0]
+    ph = ajc.mod.predict_partial_hazard(Xc).to_numpy()
+    t, e = te.tempo.to_numpy(), te.evento.to_numpy()
+    idx = np.searchsorted(H0.index.to_numpy(), t, side="left") - 1          # G(T-)
+    Hc = np.where(idx >= 0, H0.to_numpy()[np.clip(idx, 0, None)], 0.0)
+    G = np.clip(np.exp(-Hc * ph), 0.05, 1)
+    caso = (t <= 2) & (e == 1)
+    cde = CensoringDistributionEstimator().fit(ytr(tr))
+    Gm = np.clip(cde.predict_proba(t), 0.05, 1)
+    out = {"G_min_condicional": float(G[caso].min())}
+    faixa = mc.faixa_etaria(te.idade)
+    for nome in ["cox_idade", "cox_linear", "xgb_cox"]:
+        p = pd.read_csv(mc.PROC / f"pred_e3_{nome}_teste.csv").set_index("dog_id").loc[te.dog_id]
+        r2 = p.risco_2a.to_numpy()
+        d = dict(oe_km=mc.km_risco(t, e, 2.0) / r2.mean(),
+                 oe_ipcw_marginal=np.mean(caso / Gm) / r2.mean(),
+                 oe_ipcw_condicional=np.mean(caso / G) / r2.mean())
+        g = pd.qcut(pd.Series(r2).rank(method="first"), 10, labels=False).to_numpy()
+        d["oe_decis_km_estratificado"] = np.mean([mc.km_risco(t[g == k], e[g == k], 2.0) for k in range(10)]) / r2.mean()
+        d["oe_decis_condicional"] = [float(np.mean(caso[g == k] / G[g == k]) / r2[g == k].mean()) for k in range(10)]
+        d["oe_faixa_condicional"] = {n: float(np.mean(caso[faixa == n] / G[faixa == n]) / r2[faixa == n].mean())
+                                     for *_, n in mc.FAIXAS}
+        d["oe_faixa_km"] = {n: float(mc.km_risco(t[faixa == n], e[faixa == n], 2.0) / r2[faixa == n].mean())
+                            for *_, n in mc.FAIXAS}
+        out[nome] = d
+    # eutanásia × óbito natural (causa-específico: o outro tipo de óbito é censurado na data)
+    pop = pd.read_csv(mc.PROC / "populacao.csv")[["dog_id", "eol_euthan"]].set_index("dog_id")
+    eu = pop.loc[te.dog_id].eol_euthan.to_numpy()
+    for nome in ["cox_idade", "xgb_cox"]:
+        esc = pd.read_csv(mc.PROC / f"pred_e3_{nome}_teste.csv").set_index("dog_id").loc[te.dog_id].escore.to_numpy()
+        for rot, m in [("eutanasia", (e == 1) & (eu == True)), ("natural", (e == 1) & (eu == False))]:  # noqa: E712
+            ev = m.astype(int)
+            out[f"c_{rot}_{nome}"] = c_harrell(t, ev, esc)
+            out[f"c_intrafaixa_{rot}_{nome}"] = c_intrafaixa(t, ev, esc, te.idade.to_numpy())
+            out[f"n_{rot}"] = int(m.sum())
+    out["idade_max_incluidos"] = float(df.idade.max())
+    out["n_idade_acima_20"] = int((df.idade > 20).sum())
+    (OUT / "extras.json").write_text(json.dumps(out, indent=1, default=float))
+    log("extras: " + json.dumps(out, default=float))
+
+
 # ------------------------------------------------------------------------------------------------
 # 6. Vazamento
 # ------------------------------------------------------------------------------------------------
@@ -866,7 +908,7 @@ NOMES = {"idade": "idade", "saude_geral": "saúde geral (tutor)", "porte": "port
 
 def main():
     a = argparse.ArgumentParser()
-    a.add_argument("--secoes", default="cv,teste,sementes,clf2a,vieses,vazamento,shap,descr")
+    a.add_argument("--secoes", default="cv,teste,sementes,clf2a,vieses,vazamento,shap,descr,extras")
     a.add_argument("--n-boot", type=int, default=1000)
     a.add_argument("--jobs", type=int, default=6)
     a = a.parse_args()
@@ -879,7 +921,8 @@ def main():
         {"cv": lambda: secao_cv(df, a.jobs), "teste": lambda: secao_teste(df, a.n_boot, a.jobs),
          "sementes": lambda: secao_sementes(df, a.jobs), "clf2a": lambda: secao_clf2a(df),
          "vieses": lambda: secao_vieses(df, a.jobs), "vazamento": lambda: secao_vazamento(df, a.jobs),
-         "shap": lambda: secao_shap(df), "descr": lambda: secao_descr(df)}[s]()
+         "shap": lambda: secao_shap(df), "descr": lambda: secao_descr(df),
+         "extras": lambda: secao_extras(df)}[s]()
     log("fim")
 
 
