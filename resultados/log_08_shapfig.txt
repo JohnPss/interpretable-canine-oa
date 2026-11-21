@@ -1,6 +1,6 @@
 [   0.0 min] dados: 40356 cães, 12079 óbitos
 [   0.0 min] == shap
-[   2.1 min] shap:
+[   2.5 min] shap:
                                   grupo  shap_xgb  shap_xgb_sem_saude  contrib_cox  dp_folds  min_folds  max_folds
 idade                          Estáveis    1.2784              1.4160       1.0135    0.0105     1.2649     1.2940
 peso_kg                  Estilo de vida    0.2198              0.2516       0.1951    0.0099     0.2067     0.2328
@@ -22,4 +22,4 @@ Estáveis           1.2823         1.4135
 Estilo de vida     0.2627         0.3245
 Saúde na entrada   0.2110            NaN
 {"rho_folds_media": 0.9622326203208557, "rho_folds_min": 0.9461898395721926, "top10_overlap": [9, 10, 10, 9, 10], "rho_xgb_cox": 0.910427807486631, "soma_abs_efeitos_principais": 2.0799351709410203, "soma_abs_interacoes": 0.6283809420683032, "interacoes_a_priori": [{"par": "idade x porte", "media_abs": 0.026306273109512404}, {"par": "idade x castracao", "media_abs": 0.013355693913363212}, {"par": "porte x castracao", "media_abs": 0.0011296335558145074}, {"par": "idade x atividade_nivel", "media_abs": 0.0044110771142877635}, {"par": "idade x saude_geral", "media_abs": 0.021660524123639335}], "top_interacoes": [{"par": "idade x peso_kg", "media_abs": 0.08834067849325948}, {"par": "idade x raca_pura", "media_abs": 0.03461438753642142}, {"par": "idade x porte", "media_abs": 0.026306273109512404}, {"par": "idade x brincadeira_freq", "media_abs": 0.023819791829388124}, {"par": "idade x saude_geral", "media_abs": 0.021660524123639335}]}
-[   2.1 min] fim
+[   2.5 min] fim

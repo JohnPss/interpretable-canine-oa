@@ -892,7 +892,7 @@ def secao_shap(df):
 
 
 NOMES = {"idade": "idade", "saude_geral": "saúde geral (tutor)", "porte": "porte", "peso_kg": "peso",
-         "n_sistemas_doenca": "nº de sistemas c/ doença", "castracao": "castração", "minutos_ativos_dia": "min. ativos/dia",
+         "n_sistemas_doenca": "n.º de sistemas c/ doença", "castracao": "castração", "minutos_ativos_dia": "min. ativos/dia",
          "apetite": "apetite", "peso_mudanca_12m": "mudança de peso 12m", "doenca_cancer": "câncer (diag.)",
          "atividade_nivel": "nível de atividade", "raca_pura": "raça pura", "regiao": "região",
          "doenca_cardiaca": "cardíaca (diag.)", "doenca_neurologica": "neurológica (diag.)", "sexo": "sexo",
